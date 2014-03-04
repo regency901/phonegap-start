@@ -17,6 +17,15 @@
  * under the License.
  */
 var app = {
+
+    showAlert: function (message, title) {
+        if (navigator.notification) {
+            navigator.notification.alert(message, null, title, 'OK');
+        } else {
+            alert(title ? (title + ": " + message) : message);
+        }
+    },
+
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -34,6 +43,21 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+
+        if (!navigator.contacts) {
+            app.showAlert("Contacts API not supported", "Error");
+            return;
+        }
+
+        var contact = navigator.contacts.create();
+        contact.name = {givenName: "Vladimir", familyName: "Puttin"};
+        var phoneNumbers = [];
+        phoneNumbers[0] = new ContactField('work', "+18005551212", false);
+        phoneNumbers[1] = new ContactField('mobile', "+8775551212", true); // preferred number
+        contact.phoneNumbers = phoneNumbers;
+        contact.save();
+        app.showAlert("Contact Added!", "Debug");
+
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
