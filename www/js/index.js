@@ -35,39 +35,28 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+//        document.addEventListener('deviceready', this.onDeviceReady, false);
+
+        // document ready event
+        $(document).ready(function() {
+            app.blink('.blink');
+        });
+        
+        // deviceready event
+        $(document).on('deviceready', function() {
+            $("#deviceready .listening").hide();
+            $("#deviceready .received").show();
+            console.log('Received deviceready event');
+        });
     },
-    // deviceready Event Handler
+    
+    // Blink utility
     //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicity call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-
-        if (!navigator.contacts) {
-            app.showAlert("Contacts API not supported", "Error");
-            return;
-        }
-
-        var contact = navigator.contacts.create();
-        contact.name = {givenName: "Vladimir", familyName: "Puttin"};
-        var phoneNumbers = [];
-        phoneNumbers[0] = new ContactField('work', "+18005551212", false);
-        phoneNumbers[1] = new ContactField('mobile', "+8775551212", true); // preferred number
-        contact.phoneNumbers = phoneNumbers;
-        contact.save();
-        app.showAlert("Contact Added!", "Debug");
-
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
+    blink: function(selector) {
+        $(selector).fadeOut(3000, function() {
+            $(this).fadeIn('slow', function() {
+                blink(this);
+            });
+        });
     }
 };
