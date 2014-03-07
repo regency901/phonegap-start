@@ -39,6 +39,7 @@ var app = {
 
         // document ready event
         $(document).ready(function() {
+            $('.received').hide();
             app.blink('.blink');
         });
         
@@ -55,7 +56,7 @@ var app = {
     blink: function(selector) {
         $(selector).fadeOut(3000, function() {
             $(this).fadeIn('slow', function() {
-                blink(this);
+                app.blink(this);
             });
         });
     }
