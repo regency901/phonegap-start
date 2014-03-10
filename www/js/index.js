@@ -40,7 +40,6 @@ var app = {
         // document ready event
         $(document).ready(function() {
             $('.received').hide();
-            app.blink('.blink');
         });
         
         // deviceready event
@@ -51,13 +50,4 @@ var app = {
         });
     },
     
-    // Blink utility
-    //
-    blink: function(selector) {
-        $(selector).fadeOut(3000, function() {
-            $(this).fadeIn('slow', function() {
-                app.blink(this);
-            });
-        });
-    }
 };
