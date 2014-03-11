@@ -31,19 +31,56 @@
     </head>
     <body>
 
-        <div data-role="page" data-theme="a">
+        <div data-role="page" id="home" data-theme="a">
             <div data-role="header">
-		        <h1>GoingPlaces.me App!</h1>
-	        </div>
-            <div data-role="main" class="ui-content">	
+                <h1>GoingPlaces.me</h1>
+                <a href="#left-menu" data-icon="bars" data-iconpos="notext">Menu</a>
+                <a href="#right-search" data-icon="search" data-iconpos="notext">Search</a>
+            </div><!-- /header -->
+			<div data-role="main" class="ui-content">	
                 <div id="deviceready" class="blink">
                     <p class="event listening">Connecting to Device</p>
                     <p class="event received">Device is Ready</p>
                 </div>
 	        </div>
+
+            <div data-role="panel" id="left-menu" data-display="overlay" data-theme="b"> 
+                <h3>Active Competitions</h3>
+                <ul data-role="listview" data-inset="true">
+                    <li data-role="list-divider">Quebec</li>
+                    <li><a href="#">Blainville</a></li>
+                    <li><a href="#">Bromont</a></li>
+                    <li data-role="list-divider">Ontario</li>
+                    <li><a href="#">Angelstone</a></li>
+                    <li><a href="#">Toronto</a></li>
+                    <li data-role="list-divider">New York</li>
+                    <li><a href="#">Saugerties</a></li>
+                </ul>
+                <a href="#home" data-rel="close" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-b ui-icon-delete ui-btn-icon-left">Close</a>
+            </div> 
+
+            <div data-role="panel" data-position="right" id="right-search" data-display="overlay" data-theme="a"> 
+                <h3>Search Ridder Scorecard</h3>
+                <form method="post" action="searchRidderScorecard">
+                    <label for="search" class="ui-hidden-accessible">Name</label>
+                    <input type="search" name="search" id="search" placeholder="Ridder or horse name...">
+                    <label for="from_day">from:</label>
+                    <input type="date" name="from_day" id="from_day">
+                    <label for="to_day">to:</label>
+                    <input type="date" name="to_day" id="to_day">
+                    <br>
+                    <label for="email">Get email notifications:</label>
+                    <input type="email" name="email" id="email" placeholder="Your email..">
+                    <input type="checkbox" data-role="flipswitch" name="switch" id="switch">
+                    <br>
+                    <input type="submit" value="Submit">
+                </form>
+            </div> 
+	        
+	        
             <div data-role="footer">
-                <h1>Footer Text</h1>
-            </div>
+                <p>&copy; 2014 Dufresne Management Consulting, LLC</p>
+            </div><!-- /jqm-footer -->        
         </div>
 
         <script type="text/javascript">
