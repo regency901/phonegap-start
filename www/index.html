@@ -27,10 +27,15 @@
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.2.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.datepicker-0.1.1.css" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="lib/jquery-1.11.0.js"></script>
+        <script type="text/javascript" src="lib/jquery.ui.core-1.10.4.js"></script>
+        <script type="text/javascript" src="lib/jquery.ui.datepicker-1.10.4.js"></script>
         <script type="text/javascript" src="lib/jquery.mobile-1.4.2.js"></script>
+        <script type="text/javascript" src="lib/jquery.mobile.datepicker-0.1.1.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </head>
     <body>
@@ -46,6 +51,7 @@
                     <p class="event listening">Connecting to Device</p>
                     <p class="event received">Device is Ready</p>
                 </div>
+                
 	        </div>
 
             <div data-role="panel" id="left-menu" data-display="overlay" data-theme="b"> 
@@ -69,20 +75,21 @@
                     <label for="search" class="ui-hidden-accessible">Name</label>
                     <input type="search" name="search" id="search" placeholder="Ridder or horse name...">
                     <label for="from_day">from:</label>
-                    <input type="date" name="from_day" id="from_day">
+                    <input name="from_day" id="from_day" type="text" data-role="date" data-inline="false" />
                     <label for="to_day">to:</label>
-                    <input type="date" name="to_day" id="to_day">
+                    <input name="to_day" id="to_day" type="text" data-role="date" data-inline="false" />
                     <br>
                     <label for="email">Get email notifications:</label>
                     <input type="email" name="email" id="email" placeholder="Your email..">
                     <input type="checkbox" data-role="flipswitch" name="switch" id="switch">
                     <br>
+                    <input type="reset" value="Reset">
                     <input type="submit" value="Submit">
                 </form>
             </div> 
 	        
 	        
-            <div data-role="footer">
+            <div data-role="footer" style="font-size:75%; color:DarkGray">
                 <p>&copy; 2014 Dufresne Management Consulting, LLC</p>
             </div><!-- /jqm-footer -->        
         </div>
