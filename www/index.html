@@ -46,10 +46,10 @@
                 <a href="#left-menu" data-icon="bars" data-iconpos="notext">Menu</a>
                 <a href="#right-search" data-icon="search" data-iconpos="notext">Search</a>
             </div><!-- /header -->
-			<div data-role="main" class="ui-content">	
-                <div id="deviceready" class="blink">
-                    <p class="event listening">Connecting to Device</p>
-                    <p class="event received">Device is Ready</p>
+            
+			<div data-role="main" id="home-main" class="ui-content">	
+                <div id="home-default">
+                    <p class="blink">Home page content goes here.</p>
                 </div>
                 
 	        </div>
@@ -71,21 +71,32 @@
 
             <div data-role="panel" data-position="right" id="right-search" data-display="overlay" data-theme="a"> 
                 <h3>Search Ridder Scorecard</h3>
-                <form method="post" action="searchRidderScorecard">
+                <form id="search-ridder-scorecard" data-ajax="false">
                     <label for="search" class="ui-hidden-accessible">Name</label>
                     <input type="search" name="search" id="search" placeholder="Ridder or horse name...">
                     <label for="from_day">from:</label>
-                    <input name="from_day" id="from_day" type="text" data-role="date" data-inline="false" />
+                    <input name="from_day" id="from_day" type="text" data-role="date" data-inline="false" placeholder="MM/DD/YYYY"/>
                     <label for="to_day">to:</label>
-                    <input name="to_day" id="to_day" type="text" data-role="date" data-inline="false" />
+                    <input name="to_day" id="to_day" type="text" data-role="date" data-inline="false"  placeholder="MM/DD/YYYY"/>
                     <br>
                     <label for="email">Get email notifications:</label>
                     <input type="email" name="email" id="email" placeholder="Your email..">
                     <input type="checkbox" data-role="flipswitch" name="switch" id="switch">
                     <br>
                     <input type="reset" value="Reset">
-                    <input type="submit" value="Submit">
+                    <input type="button" id="submit" name="submit" value="Submit">
                 </form>
+                <!-- *** Will need to figure out how to call the underlying datepicker widget
+                <script>
+                    $(function() {
+                        $('#from_day').date("option", {
+                            showOn: "button",
+                            buttonImage: "img/calendar.gif",
+                            buttonImageOnly: true
+                        });
+                    });
+                </script>
+                -->
             </div> 
 	        
 	        
