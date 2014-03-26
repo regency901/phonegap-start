@@ -20,52 +20,74 @@ var app = {
 
     // Application Constructor
     initialize: function() {
+    
         
-        
-    $(document).on('pageinit', '#home', function(){  
-            console.log('Received pageinit event on #home');
-            alert('Received pageinit event on #home');            
-            
-            // Search for in right panel
-            $(document).on('click', '#submit', function() { // catch the form's submit event
-                console.log('Received click event on #submit');
-                alert('Search Ridder Scorecard form clicked!');
-                /*
-                if($('#username').val().length > 0 && $('#password').val().length > 0){
-                    // Send data to server through the ajax call
-                    // action is functionality we want to call and outputJSON is our data
-                        $.ajax({url: 'check.php',
-                            data: {action : 'login', formData : $('#check-user').serialize()},
-                            type: 'post',                   
-                            async: 'true',
-                                                    dataType: 'json',
-                            beforeSend: function() {
-                                // This callback function will trigger before data is sent
-                                $.mobile.showPageLoadingMsg(true); // This will show ajax spinner
-                            },
-                            complete: function() {
-                                // This callback function will trigger on data sent/received complete
-                                $.mobile.hidePageLoadingMsg(); // This will hide ajax spinner
-                            },
-                            success: function (result) {
-                                if(result.status) {
-                                    $.mobile.changePage("#second");                         
-                                } else {
-                                    alert('Logon unsuccessful!'); 
+        // Setup the events on the home page
+        $(document).on('pageinit', '#home', function(){  
+                //console.log('Received pageinit event on #home');
+                //alert('Received pageinit event on #home');            
+                
+                // Search for in right panel
+                $(document).on('click', '#submit', function() { // catch the form's submit event
+                    console.log('Received click event on #submit');
+                    //alert('Search Ridder Scorecard form clicked!');
+                    
+                    $("#home-default").hide();
+                    // $("#home-content").html("<p>Search: "+$('#search-ridder-scorecard').serialize()+"</p>");
+                    var results = {
+                        search: $('#search-ridder-scorecard').serialize(),
+                        alist: [
+                            {url: "#sophie1", name: "Sophie 1"},
+                            {url: "#sophie2", name: "Sophie 2"},
+                            {url: "#sophie3", name: "Sophie 3"},
+                        ]
+                    };
+                     
+                    $("#home-content").html(app.eachTpl(results));
+                    $("#right-search").panel( "close" );
+                    $("#home-content ul").listview().listview("refresh");
+                    
+                    //console.log($("#home-content").html());
+                    
+                    /*
+                    if($('#username').val().length > 0 && $('#password').val().length > 0){
+                        // Send data to server through the ajax call
+                        // action is functionality we want to call and outputJSON is our data
+                            $.ajax({url: 'check.php',
+                                data: {action : 'login', formData : $('#check-user').serialize()},
+                                type: 'post',                   
+                                async: 'true',
+                                                        dataType: 'json',
+                                beforeSend: function() {
+                                    // This callback function will trigger before data is sent
+                                    $.mobile.showPageLoadingMsg(true); // This will show ajax spinner
+                                },
+                                complete: function() {
+                                    // This callback function will trigger on data sent/received complete
+                                    $.mobile.hidePageLoadingMsg(); // This will hide ajax spinner
+                                },
+                                success: function (result) {
+                                    if(result.status) {
+                                        $.mobile.changePage("#second");                         
+                                    } else {
+                                        alert('Logon unsuccessful!'); 
+                                    }
+                                },
+                                error: function (request,error) {
+                                    // This callback function will trigger on unsuccessful action                
+                                    alert('Network error has occurred please try again!');
                                 }
-                            },
-                            error: function (request,error) {
-                                // This callback function will trigger on unsuccessful action                
-                                alert('Network error has occurred please try again!');
-                            }
-                        });                   
-                } else {
-                    alert('Please fill all necessary fields');
-                } 
-                */          
-                return false; // cancel original event to prevent form submitting
-            });    
-    });
+                            });                   
+                    } else {
+                        alert('Please fill all necessary fields');
+                    } 
+                    */          
+                    return false; // cancel original event to prevent form submitting
+                });    
+        });
+        
+        // Compile the template
+        app.eachTpl = Handlebars.compile($("#each-tpl").html());
 
 
 
